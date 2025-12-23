@@ -64,18 +64,3 @@ export const getSampleData = () => {
     ]
   };
 };
-```
-
-### 2️⃣ עדכני את המשתנה ב-Netlify:
-
-**מחקי את המשתנה הישן והוסיפי חדש:**
-```
-Key: VITE_API_URL
-Value: https://your-backend-name.onrender.com/api
-```
-
-⚠️ **חשוב:** השם חייב להתחיל ב-`VITE_` ולא `REACT_APP_`!
-
-### 3️⃣ צור `.env.production` בפרונטאנד:
-```
-VITE_API_URL=https://your-backend-name.onrender.com/api
