@@ -1,0 +1,76 @@
+
+
+@import '../../styles/variables';
+
+.upload-wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.upload-area {
+  background: white;
+  border: 3px dashed #cbd5e1;
+  border-radius: $radius-lg;
+  padding: 60px 40px;
+  text-align: center;
+  cursor: pointer;
+  transition: all 0.3s ease;
+
+  &:hover {
+    border-color: $primary;
+    background: #f8fafc;
+  }
+
+  &.dragging {
+    border-color: $primary;
+    background: #eff6ff;
+    transform: scale(1.02);
+  }
+
+  &.error {
+    border-color: $danger;
+  }
+}
+
+.upload-icon {
+  font-size: 64px;
+  margin-bottom: 16px;
+}
+
+.upload-area h3 {
+  font-size: 20px;
+  color: $text;
+  margin-bottom: 8px;
+}
+
+.upload-area p {
+  color: $text-light;
+  font-size: 14px;
+}
+
+.file-name {
+  font-size: 16px;
+  color: $success;
+  font-weight: 600;
+}
+
+.error-message {
+  color: $danger;
+  font-weight: 600;
+  margin-top: 12px;
+}
+
+.sample-option {
+  text-align: center;
+  padding: 20px;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: $radius-md;
+
+  p {
+    color: white;
+    margin-bottom: 12px;
+  }
+}

@@ -1,0 +1,116 @@
+
+@import '../../styles/variables';
+
+.summary-cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: $spacing-lg;
+  margin-bottom: $spacing-xl;
+  position: relative;
+  z-index: 1;
+}
+
+.summary-card {
+  background: white;
+  border-radius: $radius-xl;
+  padding: $spacing-lg;
+  box-shadow: $shadow-lg;
+  display: flex;
+  gap: $spacing-md;
+  align-items: flex-start;
+  transition: all $transition-slow;
+  border: 2px solid transparent;
+  position: relative;
+  overflow: hidden;
+
+  
+  // Gradient bar on top
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background: linear-gradient(90deg, $primary 0%, $accent 100%);
+  }
+  
+  &:hover {
+    transform: translateY(-4px) scale(1.02);
+    box-shadow: $shadow-xl;
+    border-color: $primary-lighter;
+  }
+  
+  // Highlight card (Potential Savings)
+  &.highlight {
+    background: linear-gradient(135deg, $primary 0%, $accent 100%);
+    color: white;
+    box-shadow: $shadow-xl, $shadow-primary;
+    
+    &::before {
+      background: rgba(255, 255, 255, 0.3);
+    }
+    
+    .card-title,
+    .card-value,
+    .card-subtitle {
+      color: white;
+    }
+    
+    .card-icon {
+      background: rgba(255, 255, 255, 0.2);
+    }
+    
+    &:hover {
+      transform: translateY(-6px) scale(1.03);
+    }
+  }
+}
+
+ .summary-card:last-child{
+  max-width: 300px;
+  margin-right: -40px;
+  }
+
+.card-icon {
+  font-size: 40px;
+  line-height: 1;
+  width: 60px;
+  height: 60px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: $bg-tertiary;
+  border-radius: $radius-lg;
+  flex-shrink: 0;
+}
+
+.card-content {
+  flex: 1;
+  min-width: 0;
+}
+
+.card-title {
+  font-size: $text-sm;
+  font-weight: $font-semibold;
+  color: $text-light;
+  margin-bottom: $spacing-xs;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.card-value {
+  font-size: clamp(24px, 3vw, 32px);
+  font-weight: $font-extrabold;
+  color: $text;
+  line-height: 1;
+  margin-bottom: $spacing-xs;
+  letter-spacing: -0.02em;
+}
+
+.card-subtitle {
+  font-size: $text-xs;
+  color: $text-light;
+  margin-top: $spacing-xs;
+  line-height: 1.4;
+}

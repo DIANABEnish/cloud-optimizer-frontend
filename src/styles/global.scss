@@ -1,0 +1,198 @@
+
+@import './variables';
+
+
+// RESET & BASE
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: $font-sans;
+  font-size: $text-base;
+  color: $text;
+  background: $bg-secondary;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+
+// CONTAINER
+.container {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 0 $spacing-lg;
+
+  @media (max-width: $breakpoint-md) {
+    padding: 0 $spacing-md;
+  }
+}
+
+
+// BUTTONS 
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: $spacing-xs;
+  padding: $spacing-sm $spacing-lg;
+  border: none;
+  border-radius: $radius-lg;
+  font-size: $text-base;
+  font-weight: $font-semibold;
+  cursor: pointer;
+  transition: all $transition-base;
+  white-space: nowrap;
+  
+  &:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+  }
+
+  // Primary Button
+  &-primary {
+    background: linear-gradient(135deg, $primary 0%, $accent 100%);
+    color: white;
+    box-shadow: $shadow-md, $shadow-primary;
+    
+    &:hover:not(:disabled) {
+      transform: translateY(-2px);
+      box-shadow: $shadow-lg, $shadow-primary;
+    }
+    
+    &:active {
+      transform: translateY(0);
+    }
+  }
+
+  // Secondary Button
+  &-secondary {
+    background: $bg-primary;
+    color: $text;
+    border: 2px solid $border-light;
+    box-shadow: $shadow-sm;
+    
+    &:hover:not(:disabled) {
+      background: $bg-tertiary;
+      border-color: $border-medium;
+      transform: translateY(-1px);
+    }
+  }
+
+  // Ghost Button
+  &-ghost {
+    background: transparent;
+    color: $text-secondary;
+    
+    &:hover:not(:disabled) {
+      background: $bg-tertiary;
+    }
+  }
+}
+
+
+// CARDS (Modern & Clean)
+.card {
+  background: $bg-primary;
+  border-radius: $radius-xl;
+  padding: $spacing-xl;
+  box-shadow: $shadow-md;
+  border: 1px solid $border-light;
+  transition: all $transition-slow;
+  
+  &:hover {
+    transform: translateY(-4px);
+    box-shadow: $shadow-xl;
+    border-color: $primary-lighter;
+  }
+}
+
+
+// BADGES
+.badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 4px 12px;
+  border-radius: $radius-full;
+  font-size: $text-sm;
+  font-weight: $font-medium;
+  
+  &-success {
+    background: rgba($success, 0.1);
+    color: darken($success, 10%);
+  }
+  
+  &-warning {
+    background: rgba($warning, 0.1);
+    color: darken($warning, 10%);
+  }
+  
+  &-danger {
+    background: rgba($danger, 0.1);
+    color: darken($danger, 10%);
+  }
+  
+  &-info {
+    background: rgba($info, 0.1);
+    color: darken($info, 10%);
+  }
+}
+
+
+
+// INPUTS (Modern Style)
+.input,
+select {
+  width: 100%;
+  padding: $spacing-sm $spacing-md;
+  border: 2px solid $border-light;
+  border-radius: $radius-lg;
+  font-size: $text-base;
+  font-family: $font-sans;
+  transition: all $transition-base;
+  background: $bg-primary;
+  
+  &:hover {
+    border-color: $border-medium;
+  }
+  
+  &:focus {
+    outline: none;
+    border-color: $primary;
+    box-shadow: 0 0 0 4px rgba($primary, 0.1);
+  }
+}
+
+// UTILITY CLASSES
+// Text Colors
+.text-primary { color: $primary; }
+.text-secondary { color: $text-secondary; }
+.text-muted { color: $text-light; }
+.text-success { color: $success; }
+.text-danger { color: $danger; }
+
+// Backgrounds
+.bg-gradient {
+  background: linear-gradient(135deg, $primary 0%, $accent 100%);
+}
+
+// Spacing
+.mt-1 { margin-top: $spacing-xs; }
+.mt-2 { margin-top: $spacing-sm; }
+.mt-3 { margin-top: $spacing-md; }
+.mt-4 { margin-top: $spacing-lg; }
+.mt-5 { margin-top: $spacing-xl; }
+
+.mb-1 { margin-bottom: $spacing-xs; }
+.mb-2 { margin-bottom: $spacing-sm; }
+.mb-3 { margin-bottom: $spacing-md; }
+.mb-4 { margin-bottom: $spacing-lg; }
+.mb-5 { margin-bottom: $spacing-xl; }

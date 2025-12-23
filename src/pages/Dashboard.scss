@@ -1,0 +1,251 @@
+
+@import '../styles/variables';
+
+.dashboard-page {
+  min-height: 100vh;
+  padding: $spacing-2xl $spacing-lg;
+  background: linear-gradient(135deg, $primary 0%, $accent 100%);
+  position: relative;
+  
+  // Subtle pattern
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-image: 
+      radial-gradient(circle at 25% 25%, rgba(255, 255, 255, 0.05) 0%, transparent 50%),
+      radial-gradient(circle at 75% 75%, rgba(255, 255, 255, 0.05) 0%, transparent 50%);
+    pointer-events: none;
+  }
+}
+
+//header
+.dashboard-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: $spacing-2xl;
+  flex-wrap: wrap;
+  gap: $spacing-lg;
+  position: relative;
+  z-index: 1;
+  
+  h1 {
+    font-size: clamp(28px, 4vw, 42px);
+    font-weight: $font-extrabold;
+    color: white;
+    margin-bottom: $spacing-xs;
+    letter-spacing: -0.02em;
+  }
+  
+  p {
+    color: rgba(255, 255, 255, 0.9);
+    font-size: $text-lg;
+    font-weight: $font-medium;
+  }
+}
+
+// RECOMMENDATIONS BOX
+.recommendations-box {
+  background: white;
+  border-radius: $radius-2xl;
+  padding: $spacing-xl;
+  box-shadow: $shadow-xl;
+  margin-top: $spacing-xl;
+  border: 1px solid $border-light;
+  position: relative;
+  z-index: 1;
+  
+  h3 {
+    font-size: $text-2xl;
+    font-weight: $font-bold;
+    color: $text;
+    margin-bottom: $spacing-lg;
+    display: flex;
+    align-items: center;
+    gap: $spacing-sm;
+  }
+  
+  ul {
+    list-style: none;
+    padding: 0;
+    
+    li {
+      padding: $spacing-md 0;
+      border-bottom: 1px solid $border-light;
+      font-size: $text-base;
+      color: $text-secondary;
+      display: flex;
+      align-items: center;
+      gap: $spacing-sm;
+      
+      &:last-child {
+        border-bottom: none;
+      }
+      
+      &::before {
+        content: '✓';
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 24px;
+        height: 24px;
+        background: rgba($success, 0.1);
+        color: $success;
+        border-radius: $radius-full;
+        font-weight: $font-bold;
+        flex-shrink: 0;
+      }
+      
+      strong {
+        color: $text;
+        font-weight: $font-bold;
+      }
+    }
+    
+    .savings-highlight {
+      background: linear-gradient(135deg, rgba($success, 0.1) 0%, rgba($primary, 0.05) 100%);
+      padding: $spacing-sm;
+      border-radius: $radius-xl;
+      color: darken($success, 10%);
+      margin-top: $spacing-md;
+      font-size: $text-lg;
+      font-weight: $font-semibold;
+      border: 2px solid rgba($success, 0.2);
+      
+      &::before {
+        content: '💰';
+        background: none;
+        width: auto;
+        height: auto;
+        font-size: $text-2xl;
+      }
+      
+      strong {
+        color: darken($success, 15%);
+        font-weight: $font-extrabold;
+        font-size: $text-xl;
+      }
+    }
+  }
+}
+
+.back-to-home {
+  text-align: center;
+  margin-top: $spacing-2xl;
+  padding-top: $spacing-2xl;
+  border-top: 2px solid rgba(255, 255, 255, 0.2);
+
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    gap: $spacing-xs;
+    padding: $spacing-md $spacing-xl;
+    background: white;
+    color: $primary;
+    font-weight: $font-bold;
+    box-shadow: $shadow-xl;
+
+    &:hover {
+      transform: translateY(-2px);
+      box-shadow: $shadow-2xl;
+    }
+  }
+}
+
+// DOWNLOAD REPORT SECTION
+.download-report {
+  background: white;
+  border-radius: $radius-2xl;
+  padding: $spacing-xl;
+  box-shadow: $shadow-xl;
+  margin-bottom: $spacing-xl;
+  border: 1px solid $border-light;
+  position: relative;
+  z-index: 1;
+
+  h3 {
+    font-size: $text-2xl;
+    font-weight: $font-bold;
+    color: $text;
+    margin-bottom: $spacing-lg;
+    display: flex;
+    align-items: center;
+    gap: $spacing-sm;
+  }
+
+  .download-buttons {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: $spacing-lg;
+  }
+
+  .btn-download {
+    display: flex;
+    align-items: center;
+    gap: $spacing-md;
+    padding: $spacing-lg;
+    border: 2px solid $border-light;
+    border-radius: $radius-xl;
+    background: white;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-align: left;
+
+    &:hover {
+      transform: translateY(-4px);
+      box-shadow: $shadow-2xl;
+    }
+
+    .icon {
+      font-size: 32px;
+      flex-shrink: 0;
+    }
+
+    .text {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+
+      strong {
+        font-size: $text-lg;
+        font-weight: $font-bold;
+        color: $text;
+      }
+
+      small {
+        font-size: $text-sm;
+        color: $text-secondary;
+        font-weight: $font-medium;
+      }
+    }
+
+    &.csv {
+      border-color: rgba($primary, 0.3);
+      
+      &:hover {
+        border-color: $primary;
+        background: rgba($primary, 0.05);
+      }
+    }
+
+    &.summary {
+      border-color: rgba($accent, 0.3);
+      
+      &:hover {
+        border-color: $accent;
+        background: rgba($accent, 0.05);
+      }
+    }
+  }
+}
+
+// Update header actions
+.header-actions {
+  display: flex;
+  gap: $spacing-md;
+  align-items: center;
+}
