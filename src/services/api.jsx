@@ -4,6 +4,7 @@ const API_URL = process.env.REACT_APP_API_URL || 'http://localhost:5000/api';
 
 
 console.log('🌐 API URL:', API_URL); // For debugging
+console.log('🔍 Environment:', process.env.REACT_APP_API_URL);
 
 //this function sends files for analysis
 export const analyzeFiles = async (filesData) =>{
