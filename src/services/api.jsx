@@ -1,32 +1,30 @@
 import axios from "axios";
 
-const API_URL = process.env.REACT_APP_API_URL || 'http://localhost:5000/api';
 
+const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:5000/api';
 
-console.log('🌐 API URL:', API_URL); // For debugging
-console.log('🔍 Environment:', process.env.REACT_APP_API_URL);
+console.log('🌐 API URL:', API_URL);
+console.log('🔍 Environment:', import.meta.env.VITE_API_URL);
 
 //this function sends files for analysis
-export const analyzeFiles = async (filesData) =>{
-  try{
+export const analyzeFiles = async (filesData) => {
+  try {
     const response = await axios.post(`${API_URL}/analyze`, {
       files: filesData
     })
     return response.data
-  }catch (error){
+  } catch (error) {
     console.error('Error analyzing files:', error)
      
     //in case of error from server
-      if (error.response) {
+    if (error.response) {
       throw new Error(error.response.data.error || 'Server error')
     }
     
-    //cannot conect to server
-     throw new Error('Cannot connect to server. Make sure backend is running on port 5000');
-  
+    //cannot connect to server
+    throw new Error('Cannot connect to server. Make sure backend is running');
   }
 }
-
 
 export const getSampleData = () => {
   return {
@@ -66,3 +64,18 @@ export const getSampleData = () => {
     ]
   };
 };
+```
+
+### 2️⃣ עדכני את המשתנה ב-Netlify:
+
+**מחקי את המשתנה הישן והוסיפי חדש:**
+```
+Key: VITE_API_URL
+Value: https://your-backend-name.onrender.com/api
+```
+
+⚠️ **חשוב:** השם חייב להתחיל ב-`VITE_` ולא `REACT_APP_`!
+
+### 3️⃣ צור `.env.production` בפרונטאנד:
+```
+VITE_API_URL=https://your-backend-name.onrender.com/api
