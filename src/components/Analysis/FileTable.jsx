@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { formatSize, formatDate, formatPrice } from '../../utils/formatters';
-import './FileTable.css';
+import './FileTable.scss';
 
 // displays file analysis data in a sortable and filterable table
 const FileTable = ({ files }) => {
