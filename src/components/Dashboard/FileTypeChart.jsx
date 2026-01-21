@@ -1,135 +1,119 @@
-import React from 'react';
-import { PieChart, Pie, Cell, Tooltip, Legend, ResponsiveContainer } from 'recharts';
-import { formatSize } from '../../utils/formatters';
-import './FileTypeChart.scss';
+import React from "react";
+import { useLocation, useNavigate, Link } from "react-router-dom";
+import SummaryCards from '../components/Dashboard/SummaryCards'
+import FileTable from "../components/Analysis/FileTable";
+import FileTypeChart from '../components/Dashboard/FileTypeChart';
+import { generateCSV, generateSummary, downloadFile } from '../utils/downloadUtils';
+import './Dashboard.scss'
 
-//pie chart showing storage distribution across file types
-const FileTypeChart = ({ files }) => {
-  //group files by type and calculate total size
-  const typeGroups = files.reduce((acc, file) => {
-    const type = file.type || 'other';
-    if (!acc[type]) {
-      acc[type] = {
-        count: 0,
-        size: 0
-      };
-    }
-    acc[type].count += 1;
-    acc[type].size += file.size;
-    return acc;
-  }, {});
+const Dashboard = ()=>{
+  const location = useLocation()
+  const navigate = useNavigate()
+  const {results} = location.state || {}
 
-  // format data for Recharts
-  const data = Object.entries(typeGroups)
-    .map(([type, info]) => ({
-      name: type.charAt(0).toUpperCase() + type.slice(1),
-      value: info.size,
-      count: info.count,
-      percentage: 0
-    }))
-    .sort((a, b) => b.value - a.value);
+    console.log('📊 Results from backend:', results);
+  console.log('📋 Files:', results?.files);
 
-  // Calculate percentages
-  const totalSize = data.reduce((sum, item) => sum + item.value, 0);
-  data.forEach(item => {
-    item.percentage = ((item.value / totalSize) * 100).toFixed(1);
-  });
+  //back to homepage if there are no results
+  if(!results){
+    navigate('/')
+    return null
+  }
 
-  // color mapping for file types
-  const COLORS = {
-    document: '#667eea',
-    image: '#f093fb',
-    video: '#4facfe',
-    backup: '#43e97b',
-    log: '#fa709a',
-    code: '#feca57',
-    audio: '#48dbfb',
-    other: '#c8d6e5'
+  const {summary, files} = results
+
+  const handleAnalyzeNew = ()=>{
+    navigate('/')
+  }
+
+    //download handlers
+  const handleDownloadCSV = () => {
+    const csvContent = generateCSV(files);
+    const timestamp = new Date().toISOString().split('T')[0];
+    downloadFile(csvContent, `storage-analysis-${timestamp}.csv`, 'text/csv');
   };
 
-  // Custom tooltip for detailed info
-  const CustomTooltip = ({ active, payload }) => {
-    if (active && payload && payload.length) {
-      const data = payload[0].payload;
-      return (
-        <div className="custom-tooltip">
-          <p className="tooltip-title">{data.name}</p>
-          <p className="tooltip-detail">
-            <strong>{formatSize(data.value)}</strong> ({data.percentage}%)
-          </p>
-          <p className="tooltip-count">{data.count} files</p>
-        </div>
-      );
-    }
-    return null;
+  const handleDownloadSummary = () => {
+    const summaryContent = generateSummary(summary, files);
+    const timestamp = new Date().toISOString().split('T')[0];
+    downloadFile(summaryContent, `storage-summary-${timestamp}.txt`, 'text/plain');
   };
 
-  return (
-    <div className="file-type-chart-container">
-      <div className="chart-header">
-        <h3>📊 Storage by File Type</h3>
-        <p>Distribution of your files across different categories</p>
-      </div>
 
-      <div className="chart-content">
-        <div className="chart-wrapper">
-          <ResponsiveContainer width="100%" height={350}>
-            <PieChart>
-              <Pie
-                data={data}
-                cx="50%"
-                cy="50%"
-                labelLine={false}
-                outerRadius={110}
-                innerRadius={65}
-                fill="#8884d8"
-                dataKey="value"
-                animationBegin={0}
-                animationDuration={800}
-              >
-                {data.map((entry, index) => (
-                  <Cell 
-                    key={`cell-${index}`} 
-                    fill={COLORS[entry.name.toLowerCase()] || COLORS.other}
-                  />
-                ))}
-              </Pie>
-              <Tooltip content={<CustomTooltip />} />
-              <Legend 
-                verticalAlign="bottom" 
-                height={50}
-                iconType="circle"
-                formatter={(value, entry) => {
-                  const item = data.find(d => d.name === value);
-                  return `${value} - ${item?.percentage}%`;
-                }}
-              />
-            </PieChart>
-          </ResponsiveContainer>
-        </div>
-
-        {/* Detailed breakdown table */}
-        <div className="chart-summary">
-          <h4>Breakdown:</h4>
-          <div className="summary-grid">
-            {data.map((item, index) => (
-              <div key={index} className="summary-item">
-                <div 
-                  className="color-indicator" 
-                  style={{ background: COLORS[item.name.toLowerCase()] || COLORS.other }}
-                ></div>
-                <div className="summary-info">
-                  <span className="type-name">{item.name}</span>
-                  <span className="type-size">{formatSize(item.value)}</span>
-                  <span className="type-percentage">{item.percentage}%</span>
-                </div>
-              </div>
-            ))}
+  return(
+      <div className="dashboard-page">
+      <div className="container">
+        <header className="dashboard-header">
+          <div>
+            <h1>📊 Analysis Results</h1>
+            <p>Here's what we found in your storage</p>
           </div>
+          <button onClick={handleAnalyzeNew} className="btn btn-primary">
+            ← Analyze New Files
+          </button>
+        </header>
+
+           {/* Download Report Section */}
+        <div className="download-report">
+          <h3>📥 Download Report</h3>
+          <div className="download-buttons">
+            <button onClick={handleDownloadCSV} className="btn-download csv">
+              <span className="icon">📊</span>
+              <span className="text">
+                <strong>CSV Format</strong>
+                <small>Detailed file list for spreadsheets</small>
+                <small>Open with Excel or Google Sheets</small>
+              </span>
+            </button>
+            <button onClick={handleDownloadSummary} className="btn-download summary">
+              <span className="icon">📄</span>
+              <span className="text">
+                <strong>Text Summary</strong>
+                <small>Overview report with recommendations</small>
+              </span>
+            </button>
+          </div>
+        </div>
+
+        {/* summary cards */}
+        <SummaryCards summary={summary} />
+
+              {/* Pie Chart */}
+        <FileTypeChart files={files} />
+
+        {/* files chart */}
+        <FileTable files={files} />
+
+        {/* recommandations */}
+        {summary.estimatedSavings > 0 && (
+          <div className="recommendations-box">
+            <h3>💡 Quick Wins</h3>
+            <ul>
+              {summary.oldFiles > 0 && (
+                <li>
+                  Move <strong>{summary.oldFiles}</strong> old files to Glacier storage
+                </li>
+              )}
+              {summary.duplicates > 0 && (
+                <li>
+                  Remove <strong>{summary.duplicates}</strong> duplicate files
+                </li>
+              )}
+              <li className="savings-highlight">
+                 Total potential savings: <strong>${summary.estimatedSavings.toFixed(2)}/mo</strong>
+              </li>
+            </ul>
+          </div>
+        )}
+
+         <div className="back-to-home">
+           <Link to="/" className="btn">
+              ← Back to Home
+           </Link>
         </div>
       </div>
     </div>
-  );
-};
 
-export default FileTypeChart;
+  )
+}
+export default Dashboard
