@@ -115,9 +115,13 @@
       font-size: $text-lg;
       font-weight: $font-semibold;
       border: 2px solid rgba($success, 0.2);
+
+      @media (max-width:768px) {
+        width: 100%;
+      }
       
       &::before {
-        content: '💰';
+    
         background: none;
         width: auto;
         height: auto;
@@ -160,7 +164,8 @@
 .download-report {
   background: white;
   border-radius: $radius-2xl;
-  padding: $spacing-xl;
+  padding: $spacing-md;
+  width: 100%;
   box-shadow: $shadow-xl;
   margin-bottom: $spacing-xl;
   border: 1px solid $border-light;
@@ -179,8 +184,9 @@
 
   .download-buttons {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
     gap: $spacing-lg;
+   
   }
 
   .btn-download {
