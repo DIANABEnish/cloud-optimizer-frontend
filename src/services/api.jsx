@@ -1,30 +1,34 @@
 import axios from "axios";
 
-
 const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:5000/api';
 
-console.log('🌐 API URL:', API_URL);
-console.log('🔍 Environment:', import.meta.env.VITE_API_URL);
+
+
+console.log('🌐 API URL:', API_URL); // For debugging
+console.log(import.meta.env.VITE_API_URL);
+
 
 //this function sends files for analysis
-export const analyzeFiles = async (filesData) => {
-  try {
+export const analyzeFiles = async (filesData) =>{
+  try{
     const response = await axios.post(`${API_URL}/analyze`, {
       files: filesData
     })
     return response.data
-  } catch (error) {
+  }catch (error){
     console.error('Error analyzing files:', error)
      
     //in case of error from server
-    if (error.response) {
+      if (error.response) {
       throw new Error(error.response.data.error || 'Server error')
     }
     
-    //cannot connect to server
-    throw new Error('Cannot connect to server. Make sure backend is running');
+    //cannot conect to server
+     throw new Error('Cannot connect to server. Make sure backend is running on port 5000');
+  
   }
 }
+
 
 export const getSampleData = () => {
   return {
