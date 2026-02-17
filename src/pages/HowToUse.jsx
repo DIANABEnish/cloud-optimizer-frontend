@@ -7,7 +7,10 @@ import {
   Rocket,
   Cloud,
   BookOpen,
-  HelpCircle
+  HelpCircle,
+  HardDrive,
+  Camera,
+  AlertTriangle
 } from 'lucide-react';
 import './HowToUse.scss';
 
@@ -118,38 +121,68 @@ const HowToUse = () => {
           
           <div className="cloud-guides">
             <div className="guide-card">
-              <h3>Google Drive</h3>
-              <p><strong>Option 1:</strong> Use Google Drive Desktop</p>
-              <ol>
-                <li>Install from google.com/drive/download</li>
-                <li>Wait for sync to complete</li>
-                <li>Run script on G:\ or Google Drive folder</li>
-              </ol>
-              <p><strong>Option 2:</strong> Download via Google Takeout</p>
+              <div className="guide-icon-col guide-icon-col--drive">
+                <div className="guide-icon guide-icon--drive">
+                  <HardDrive size={20} />
+                </div>
+              </div>
+              <div className="guide-card-body">
+                <h3>Google Drive</h3>
+                <p><strong>Option 1:</strong> Google Drive Desktop</p>
+                <ol>
+                  <li>Install from google.com/drive/download</li>
+                  <li>Wait for sync to complete</li>
+                  <li>Run script on G:\ or Google Drive folder</li>
+                </ol>
+                <p><strong>Option 2:</strong> Google Takeout</p>
+              </div>
             </div>
 
             <div className="guide-card">
-              <h3>Dropbox</h3>
-              <p>Use Dropbox Desktop app - files sync automatically</p>
+              <div className="guide-icon-col guide-icon-col--dropbox">
+                <div className="guide-icon guide-icon--dropbox">
+                  <Cloud size={20} />
+                </div>
+              </div>
+              <div className="guide-card-body">
+                <h3>Dropbox</h3>
+                <p>Use Dropbox Desktop app — files sync automatically to your local folder and are ready to scan</p>
+              </div>
             </div>
 
             <div className="guide-card">
-              <h3>OneDrive</h3>
-              <p>Built into Windows - check C:\Users\YourName\OneDrive</p>
+              <div className="guide-icon-col guide-icon-col--onedrive">
+                <div className="guide-icon guide-icon--onedrive">
+                  <Cloud size={20} />
+                </div>
+              </div>
+              <div className="guide-card-body">
+                <h3>OneDrive</h3>
+                <p>Built into Windows, your files are already synced locally:</p>
+                <code>C:\Users\YourName\OneDrive</code>
+              </div>
             </div>
 
-            <div className="guide-card">
-              <h3>Google Photos</h3>
-              <p><strong>⚠️ No Desktop Sync Available</strong></p>
-              <p><strong>Solution:</strong> Use Google Takeout</p>
-              <ol>
-                <li>Go to takeout.google.com</li>
-                <li>Select only "Google Photos"</li>
-                <li>Create export (may take hours)</li>
-                <li>Download ZIP when ready</li>
-                <li>Extract to folder</li>
-                <li>Run script on extracted folder</li>
-              </ol>
+            <div className="guide-card guide-card--warning">
+              <div className="guide-icon-col guide-icon-col--photos">
+                <div className="guide-icon guide-icon--photos">
+                  <Camera size={20} />
+                </div>
+              </div>
+              <div className="guide-card-body">
+                <h3>Google Photos</h3>
+                <div className="warning-badge">
+                  <AlertTriangle size={13} />
+                  No Desktop Sync
+                </div>
+                <p><strong>Use Google Takeout:</strong></p>
+                <ol>
+                  <li>Go to takeout.google.com</li>
+                  <li>Select "Google Photos"</li>
+                  <li>Export &amp; download ZIP</li>
+                  <li>Extract &amp; run script</li>
+                </ol>
+              </div>
             </div>
           </div>
         </section>
@@ -160,19 +193,21 @@ const HowToUse = () => {
             FAQ
           </h2>
           
-          <div className="faq-item">
-            <h3>Do I need to install Python or Node.js?</h3>
-            <p>Yes, you need one of them installed to run the script.</p>
-          </div>
+          <div className="faq-list">
+            <div className="faq-item">
+              <h3>Do I need to install Python or Node.js?</h3>
+              <p>Yes, you need one of them installed to run the script. Python is usually pre-installed on Mac/Linux. On Windows, download from python.org or nodejs.org.</p>
+            </div>
 
-          <div className="faq-item">
-            <h3>Is my data sent to your servers?</h3>
-            <p>No! The script runs locally on your computer. Only the JSON file (metadata only - no actual file content) is uploaded for analysis.</p>
-          </div>
+            <div className="faq-item">
+              <h3>Is my data sent to your servers?</h3>
+              <p>No! The script runs locally on your computer. Only the JSON file (metadata only — no actual file content) is uploaded for analysis. Your files never leave your machine.</p>
+            </div>
 
-          <div className="faq-item">
-            <h3>Can I analyze cloud storage directly?</h3>
-            <p>Currently, you need to sync files locally first. Direct cloud integration is planned for future versions.</p>
+            <div className="faq-item">
+              <h3>Can I analyze cloud storage directly?</h3>
+              <p>Currently, you need to sync files locally first. Direct cloud integration (S3, GCS, Azure Blob) is planned for a future version.</p>
+            </div>
           </div>
         </section>
 
