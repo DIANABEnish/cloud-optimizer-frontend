@@ -188,6 +188,7 @@
     display: flex;
     gap: $spacing-lg;
     align-items: flex-start;
+    
 
     .step-number {
       width: 40px;
@@ -205,7 +206,7 @@
 
     .step-content {
       flex: 1;
-      background: $muted;
+    
       padding: $spacing-lg;
       border-radius: $radius-lg;
       border: 1px solid $border;
@@ -218,13 +219,15 @@
       }
 
       code { display: block; }
+     
+      background: $background;
     }
 
     @media (max-width: $breakpoint-sm) {
       gap: $spacing-md;
 
       .step-content code {
-  overflow-wrap: anywhere;
+        overflow-wrap: anywhere;
 }
       .step-number {
         width: 32px;
