@@ -1,6 +1,6 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { ChevronDown, Check } from 'lucide-react';
-import './CustomSelect.scss';
+import './Customselect.scss';
 
 const CustomSelect = ({ value, onChange, options, label }) => {
   const [isOpen, setIsOpen] = useState(false);
@@ -61,5 +61,6 @@ const CustomSelect = ({ value, onChange, options, label }) => {
     </div>
   );
 };
+
 
 export default CustomSelect;
