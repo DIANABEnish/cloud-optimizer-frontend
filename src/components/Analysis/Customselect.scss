@@ -1,0 +1,193 @@
+@import '../../styles/variables';
+
+.custom-select-wrapper {
+  position: relative;
+  display: inline-flex;
+  flex-direction: column;
+  gap: $spacing-xs;
+
+  @media (max-width: $breakpoint-md) {
+    width: 100%;
+  }
+}
+
+.custom-select-label {
+  font-size: $text-sm;
+  font-weight: $font-semibold;
+  color: $muted-foreground;
+
+  @media (max-width: $breakpoint-md) {
+    font-size: $text-xs;
+  }
+}
+
+.custom-select {
+  position: relative;
+  min-width: 200px;
+
+  @media (max-width: $breakpoint-md) {
+    width: 100%;
+    min-width: unset;
+  }
+}
+
+.custom-select-trigger {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: $spacing-md;
+  padding: $spacing-sm $spacing-lg;
+  border: 2px solid $border;
+  border-radius: $radius-lg;
+  background: $card;
+  color: $foreground;
+  font-family: $font-sans;
+  font-weight: $font-medium;
+  font-size: $text-sm;
+  cursor: pointer;
+  transition: all $transition-base;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+  user-select: none;
+
+  &:hover {
+    border-color: rgba($primary, 0.5);
+    background-color: rgba($primary, 0.02);
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
+  }
+
+  .custom-select.open & {
+    border-color: $primary;
+    box-shadow: 0 0 0 3px rgba($primary, 0.1);
+    background-color: $card;
+  }
+
+  @media (max-width: $breakpoint-md) {
+    padding: $spacing-md $spacing-lg;
+  }
+}
+
+.custom-select-value {
+  flex: 1;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.custom-select-icon {
+  color: $muted-foreground;
+  transition: transform $transition-base;
+  flex-shrink: 0;
+
+  &.rotated {
+    transform: rotate(180deg);
+  }
+}
+
+.custom-select-dropdown {
+  position: absolute;
+  top: calc(100% + 4px);
+  left: 0;
+  right: 0;
+  background: $card;
+  border: 2px solid $primary;
+  border-radius: $radius-lg;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
+  z-index: 1000;
+  overflow: hidden;
+  animation: dropdownSlideIn 0.2s ease-out;
+  max-height: 300px;
+  overflow-y: auto;
+
+  // Custom scrollbar styling
+  &::-webkit-scrollbar {
+    width: 8px;
+  }
+
+  &::-webkit-scrollbar-track {
+    background: rgba($muted, 0.3);
+    border-radius: $radius-sm;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background: rgba($primary, 0.3);
+    border-radius: $radius-sm;
+
+    &:hover {
+      background: rgba($primary, 0.5);
+    }
+  }
+
+  @media (max-width: $breakpoint-md) {
+    max-height: 250px;
+  }
+}
+
+@keyframes dropdownSlideIn {
+  from {
+    opacity: 0;
+    transform: translateY(-8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.custom-select-option {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: $spacing-md $spacing-lg;
+  cursor: pointer;
+  transition: all $transition-base;
+  font-size: $text-sm;
+  font-weight: $font-medium;
+  color: $foreground;
+  border-bottom: 1px solid rgba($border, 0.5);
+
+  &:last-child {
+    border-bottom: none;
+  }
+
+  &:hover {
+    background: linear-gradient(to right, rgba($primary, 0.08), rgba($primary, 0.02));
+    color: $primary;
+    padding-left: calc($spacing-lg + 4px);
+  }
+
+  &.selected {
+    background: rgba($primary, 0.1);
+    color: $primary;
+    font-weight: $font-semibold;
+
+    &:hover {
+      background: rgba($primary, 0.15);
+    }
+  }
+
+  .option-label {
+    flex: 1;
+  }
+
+  .option-check {
+    color: $primary;
+    flex-shrink: 0;
+    animation: checkSlideIn 0.2s ease-out;
+  }
+
+  @media (max-width: $breakpoint-md) {
+    padding: $spacing-md;
+    font-size: $text-sm;
+  }
+}
+
+@keyframes checkSlideIn {
+  from {
+    opacity: 0;
+    transform: translateX(-4px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}

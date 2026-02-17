@@ -1,0 +1,267 @@
+// ============================================
+// GLOBAL STYLES
+// Cloud Storage Optimizer
+// ============================================
+
+@import './variables';
+
+// ============================================
+// RESET & BASE
+// ============================================
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  font-family: $font-sans;
+  font-size: $text-base;
+  color: $foreground;
+  background: $background;
+  line-height: $leading-normal;
+}
+
+// ============================================
+// TYPOGRAPHY
+// ============================================
+
+h1, h2, h3, h4, h5, h6 {
+  font-weight: $font-bold;
+  line-height: $leading-tight;
+  color: $foreground;
+  margin: 0;
+}
+
+h1 {
+  font-size: $text-5xl;
+  font-weight: $font-extrabold;
+}
+
+h2 {
+  font-size: $text-3xl;
+}
+
+h3 {
+  font-size: $text-2xl;
+}
+
+p {
+  margin: 0;
+  line-height: $leading-relaxed;
+}
+
+a {
+  color: $primary;
+  text-decoration: none;
+  transition: color $transition-base;
+  
+  &:hover {
+    color: $accent;
+  }
+}
+
+// ============================================
+// CONTAINER
+// ============================================
+
+.container {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 0 $spacing-lg;
+
+  @media (max-width: $breakpoint-md) {
+    padding: 0 $spacing-md;
+  }
+}
+
+// ============================================
+// BUTTONS
+// ============================================
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: $spacing-xs;
+  padding: $spacing-sm $spacing-lg;
+  border: none;
+  border-radius: $radius-lg;
+  font-size: $text-base;
+  font-weight: $font-semibold;
+  font-family: $font-sans;
+  cursor: pointer;
+  transition: all $transition-base;
+  white-space: nowrap;
+  text-decoration: none;
+  
+  &:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+  }
+
+  // Primary Button
+  &-primary {
+    background: $primary;
+    color: white;
+    box-shadow: $shadow-md;
+    
+    &:hover:not(:disabled) {
+      background: darken($primary, 5%);
+      transform: translateY(-2px);
+      box-shadow: $shadow-lg;
+    }
+    
+    &:active {
+      transform: translateY(0);
+    }
+  }
+
+  // Secondary Button
+  &-secondary {
+    background: $card;
+    color: $foreground;
+    border: 1px solid $border;
+    box-shadow: $card-shadow;
+    
+    &:hover:not(:disabled) {
+      background: $muted;
+      border-color: darken($border, 5%);
+      transform: translateY(-1px);
+    }
+  }
+
+  // Ghost Button
+  &-ghost {
+    background: transparent;
+    color: $muted-foreground;
+    
+    &:hover:not(:disabled) {
+      background: $muted;
+    }
+  }
+}
+
+// ============================================
+// CARDS
+// ============================================
+
+.card {
+  background: $card;
+  border-radius: $radius-xl;
+  padding: $spacing-xl;
+  box-shadow: $card-shadow;
+  border: 1px solid $border;
+  transition: all $transition-slow;
+  
+  &:hover {
+    transform: translateY(-4px);
+    box-shadow: $card-shadow-hover;
+  }
+}
+
+// ============================================
+// BADGES
+// ============================================
+
+.badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.25rem;
+  padding: 0.25rem 0.75rem;
+  border-radius: $radius-full;
+  font-size: $text-sm;
+  font-weight: $font-medium;
+  
+  &-success {
+    background: rgba($success, 0.1);
+    color: darken($success, 10%);
+  }
+  
+  &-warning {
+    background: rgba($warning, 0.1);
+    color: darken($warning, 10%);
+  }
+  
+  &-danger {
+    background: rgba($destructive, 0.1);
+    color: darken($destructive, 10%);
+  }
+}
+
+// ============================================
+// INPUTS
+// ============================================
+
+input,
+textarea,
+select {
+  width: 100%;
+  padding: $spacing-sm $spacing-md;
+  border: 2px solid $input;
+  border-radius: $radius-lg;
+  font-size: $text-base;
+  font-family: $font-sans;
+  transition: all $transition-base;
+  background: $card;
+  color: $foreground;
+  
+  &:hover {
+    border-color: darken($input, 5%);
+  }
+  
+  &:focus {
+    outline: none;
+    border-color: $primary;
+    box-shadow: 0 0 0 4px rgba($primary, 0.1);
+  }
+  
+  &::placeholder {
+    color: $muted-foreground;
+  }
+}
+
+// ============================================
+// UTILITY CLASSES
+// ============================================
+
+// Text Colors
+.text-primary { color: $primary; }
+.text-secondary { color: $secondary-foreground; }
+.text-muted { color: $muted-foreground; }
+.text-success { color: $success; }
+.text-danger { color: $destructive; }
+
+// Backgrounds
+.bg-gradient {
+  background: $hero-gradient;
+}
+
+.bg-accent-gradient {
+  background: $accent-gradient;
+}
+
+// Spacing
+.mt-1 { margin-top: $spacing-xs; }
+.mt-2 { margin-top: $spacing-sm; }
+.mt-3 { margin-top: $spacing-md; }
+.mt-4 { margin-top: $spacing-lg; }
+.mt-5 { margin-top: $spacing-xl; }
+
+.mb-1 { margin-bottom: $spacing-xs; }
+.mb-2 { margin-bottom: $spacing-sm; }
+.mb-3 { margin-bottom: $spacing-md; }
+.mb-4 { margin-bottom: $spacing-lg; }
+.mb-5 { margin-bottom: $spacing-xl; }
+
+// Text Alignment
+.text-center { text-align: center; }
+.text-left { text-align: left; }
+.text-right { text-align: right; }

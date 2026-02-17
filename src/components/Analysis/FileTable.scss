@@ -1,0 +1,245 @@
+@import '../../styles/variables';
+
+.file-table-container {
+  background: $card;
+  border: 1px solid $border;
+  border-radius: $radius-2xl;
+  padding: $spacing-2xl;
+  box-shadow: $card-shadow;
+  margin-top: $spacing-3xl;
+
+  @media (max-width: $breakpoint-md) {
+    padding: $spacing-lg;
+    border-radius: $radius-xl;
+  }
+}
+
+.table-header {
+  margin-bottom: $spacing-xl;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: $spacing-lg;
+  padding-bottom: $spacing-lg;
+  border-bottom: 2px solid $muted;
+
+  h3 {
+    font-size: $text-2xl;
+    color: $foreground;
+    font-weight: $font-bold;
+    margin: 0;
+    display: flex;
+    align-items: center;
+    gap: $spacing-sm;
+    
+    svg {
+      width: 24px;
+      height: 24px;
+      color: $primary;
+      stroke-width: 2;
+    }
+  }
+
+  @media (max-width: $breakpoint-md) {
+    flex-direction: column;
+    align-items: flex-start;
+    
+    h3 { font-size: $text-xl; }
+  }
+}
+
+.table-controls {
+  display: flex;
+  gap: $spacing-lg;
+  flex-wrap: wrap;
+  align-items: flex-start;
+
+  @media (max-width: $breakpoint-md) {
+    width: 100%;
+    flex-direction: column;
+    gap: $spacing-md;
+  }
+}
+
+.sort-group {
+  display: flex;
+  align-items: center;
+  gap: $spacing-sm;
+
+  @media (max-width: $breakpoint-md) {
+    width: 100%;
+    flex-direction: column;
+    align-items: stretch;
+  }
+}
+
+.sort-group label {
+  font-size: $text-sm;
+  font-weight: $font-semibold;
+  color: $muted-foreground;
+
+  @media (max-width: $breakpoint-md) {
+    font-size: $text-xs;
+  }
+}
+
+
+
+
+.sort-btn {
+  padding: $spacing-sm $spacing-md;
+  border: 2px solid $border;
+  border-radius: $radius-md;
+  background: $card;
+  font-size: $text-sm;
+  font-weight: $font-semibold;
+  color: $foreground;
+  font-family: $font-sans;
+  display: inline-flex;
+  align-items: center;
+  gap: $spacing-xs;
+  transition: all $transition-base;
+
+  svg {
+    stroke-width: 2;
+  }
+
+  &:hover {
+    border-color: rgba($primary, 0.4);
+    background: rgba($primary, 0.03);
+  }
+
+  &.active {
+    border-color: $primary;
+    background: $primary;
+    color: white;
+    
+    svg { color: white; }
+  }
+
+  @media (max-width: $breakpoint-md) {
+    width: 100%;
+    justify-content: center;
+  }
+}
+
+.table-wrapper {
+  overflow-x: auto;
+  border-radius: $radius-lg;
+}
+
+.file-table {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0;
+  font-size: $text-sm;
+
+  th {
+    background: $muted;
+    padding: $spacing-md $spacing-lg;
+    text-align: left;
+    font-weight: $font-semibold;
+    color: $foreground;
+    border-bottom: 2px solid $border;
+    white-space: nowrap;
+
+    &.sortable {
+      cursor: pointer;
+
+      &:hover {
+        background: darken($muted, 2%);
+        color: $primary;
+      }
+    }
+  }
+
+  td {
+    padding: $spacing-lg;
+    border-bottom: 1px solid $border;
+    color: $foreground;
+  }
+
+  tr:hover {
+    background: rgba($primary, 0.02);
+  }
+
+  @media (max-width: $breakpoint-md) {
+    font-size: $text-xs;
+    
+    th, td {
+      padding: $spacing-sm $spacing-md;
+    }
+  }
+}
+
+.file-name {
+  display: flex;
+  align-items: center;
+  gap: $spacing-sm;
+  font-weight: $font-medium;
+  max-width: 300px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+
+  @media (max-width: $breakpoint-md) {
+    max-width: 150px;
+  }
+}
+
+.file-icon {
+  color: $muted-foreground;
+  flex-shrink: 0;
+  
+  svg { stroke-width: 2; }
+}
+
+.type-badge {
+  background: rgba($primary, 0.08);
+  color: $primary;
+  padding: 4px 10px;
+  border-radius: $radius-sm;
+  font-size: $text-xs;
+  font-weight: $font-semibold;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.status-badge {
+  padding: 4px 10px;
+  border-radius: $radius-sm;
+  font-size: $text-xs;
+  font-weight: $font-semibold;
+  margin-right: 4px;
+
+  &.old {
+    background: rgba($warning, 0.1);
+    color: darken($warning, 10%);
+  }
+
+  &.duplicate {
+    background: rgba($destructive, 0.1);
+    color: darken($destructive, 5%);
+  }
+
+  &.ok {
+    background: rgba($success, 0.1);
+    color: darken($success, 5%);
+  }
+}
+
+.recommendation {
+  font-weight: $font-semibold;
+  font-size: $text-sm;
+
+  &.move { color: $warning; }
+  &.remove { color: $destructive; }
+  &.keep { color: $success; }
+}
+
+.savings {
+  color: $success;
+  font-weight: $font-bold;
+  font-size: $text-sm;
+}

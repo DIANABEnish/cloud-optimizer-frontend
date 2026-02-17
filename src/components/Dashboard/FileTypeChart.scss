@@ -1,0 +1,164 @@
+@import '../../styles/variables';
+
+.file-type-chart-container {
+  background: $card;
+  border: 1px solid $border;
+  border-radius: $radius-2xl;
+  padding: $spacing-2xl;
+  box-shadow: $card-shadow;
+  height: 100%;
+
+  @media (max-width: $breakpoint-md) {
+    padding: $spacing-lg;
+    border-radius: $radius-xl;
+  }
+}
+
+.chart-header {
+  margin-bottom: $spacing-2xl;
+  text-align: center;
+
+  h3 {
+    font-size: $text-2xl;
+    color: $foreground;
+    font-weight: $font-bold;
+    margin-bottom: $spacing-xs;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: $spacing-sm;
+    
+    svg {
+      width: 24px;
+      height: 24px;
+      color: $primary;
+      stroke-width: 2;
+    }
+  }
+
+  p {
+    font-size: $text-sm;
+    color: $muted-foreground;
+    margin: 0;
+  }
+
+  @media (max-width: $breakpoint-md) {
+    h3 { font-size: $text-xl; }
+  }
+}
+
+.chart-content {
+  display: grid;
+  grid-template-columns: 1fr 320px;
+  gap: $spacing-3xl;
+  align-items: start;
+
+  @media (max-width: $breakpoint-md) {
+    grid-template-columns: 1fr;
+    gap: $spacing-2xl;
+  }
+}
+
+.custom-tooltip {
+  background: $card;
+  border: 2px solid $border;
+  border-radius: $radius-lg;
+  padding: $spacing-md $spacing-lg;
+  box-shadow: $shadow-lg;
+
+  .tooltip-title {
+    font-size: $text-base;
+    font-weight: $font-bold;
+    color: $foreground;
+    margin-bottom: $spacing-xs;
+  }
+
+  .tooltip-detail {
+    font-size: $text-sm;
+    color: $muted-foreground;
+    margin-bottom: 4px;
+
+    strong {
+      color: $primary;
+      font-weight: $font-bold;
+    }
+  }
+
+  .tooltip-count {
+    font-size: $text-xs;
+    color: $muted-foreground;
+  }
+}
+
+.chart-summary {
+  h4 {
+    font-size: $text-lg;
+    font-weight: $font-bold;
+    color: $foreground;
+    margin-bottom: $spacing-lg;
+  }
+}
+
+.summary-grid {
+  display: flex;
+  flex-direction: column;
+  gap: $spacing-sm;
+}
+
+.summary-item {
+  display: flex;
+  align-items: center;
+  gap: $spacing-md;
+  padding: $spacing-sm $spacing-md;
+  border-radius: $radius-md;
+  transition: all $transition-base;
+  border: 1px solid transparent;
+
+  &:hover {
+    background: $muted;
+    border-color: $border;
+    transform: translateX(4px);
+  }
+}
+
+.color-indicator {
+  width: 18px;
+  height: 18px;
+  border-radius: $radius-sm;
+  flex-shrink: 0;
+}
+
+.summary-info {
+  display: flex;
+  align-items: center;
+  gap: $spacing-md;
+  flex: 1;
+
+  .type-name {
+    font-size: $text-sm;
+    font-weight: $font-semibold;
+    color: $foreground;
+    min-width: 90px;
+  }
+
+  .type-size {
+    font-size: $text-sm;
+    color: $muted-foreground;
+    flex: 1;
+    font-weight: $font-medium;
+  }
+
+  .type-percentage {
+    font-size: $text-sm;
+    font-weight: $font-bold;
+    color: $primary;
+    min-width: 55px;
+    text-align: right;
+  }
+
+  @media (max-width: $breakpoint-sm) {
+    .type-name { min-width: 70px; font-size: $text-xs; }
+    .type-size { font-size: $text-xs; }
+    .type-percentage { min-width: 45px; font-size: $text-xs; }
+  }
+}

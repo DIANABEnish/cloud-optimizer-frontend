@@ -1,0 +1,379 @@
+@import '../styles/variables';
+
+.dashboard-page {
+  min-height: 100vh;
+  background: $background;
+  padding: 3rem 0 5rem;
+  
+  @media (max-width: $breakpoint-md) {
+    padding: 2rem 0 3rem;
+  }
+
+  .container {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 0 $spacing-lg;
+    
+    @media (max-width: $breakpoint-md) {
+      padding: 0 $spacing-md;
+    }
+  }
+
+  // DASHBOARD HEADER
+  .dashboard-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 3rem;
+    padding-bottom: 2rem;
+    border-bottom: 2px solid $border;
+    flex-wrap: wrap;
+    gap: 1.5rem;
+
+    h1 {
+      font-size: clamp(2rem, 4vw, 2.5rem);
+      font-weight: $font-extrabold;
+      margin: 0 0 0.5rem 0;
+      color: $primary;
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      
+      svg {
+        width: 32px;
+        height: 32px;
+        stroke-width: 2;
+      }
+    }
+
+    p {
+      margin: 0;
+      color: $muted-foreground;
+      font-size: 1.05rem;
+    }
+
+    .btn-primary svg {
+      width: 16px;
+      height: 16px;
+      stroke-width: 2;
+    }
+    
+    @media (max-width: $breakpoint-md) {
+      flex-direction: column;
+      align-items: flex-start;
+
+      .btn-primary {
+        width: 100%;
+      }
+    }
+  }
+
+  // DOWNLOAD REPORT
+  .download-report {
+    background: $card;
+    border: 1px solid $border;
+    border-radius: $radius-2xl;
+    padding: 2rem;
+    margin-bottom: 3rem;
+    box-shadow: $card-shadow;
+
+    h3 {
+      font-size: $text-2xl;
+      font-weight: $font-bold;
+      margin-bottom: 1.5rem;
+      color: $foreground;
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      
+      svg {
+        width: 24px;
+        height: 24px;
+        color: $primary;
+        stroke-width: 2;
+      }
+    }
+
+    .download-buttons {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 1.5rem;
+      
+      @media (max-width: $breakpoint-md) {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .btn-download {
+      display: flex;
+      align-items: center;
+      gap: 1.25rem;
+      padding: 1.5rem;
+      background: $background;
+      border: 2px solid $border;
+      border-radius: $radius-xl;
+      transition: all $transition-base;
+      text-align: left;
+
+      &:hover {
+        transform: translateY(-2px);
+        box-shadow: $shadow-md;
+        border-color: rgba($primary, 0.4);
+
+        .icon svg {
+          transform: scale(1.1);
+        }
+      }
+
+      .icon {
+        width: 48px;
+        height: 48px;
+        background: linear-gradient(135deg, rgba($primary, 0.1), rgba($primary, 0.05));
+        border-radius: $radius-lg;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: $primary;
+        
+        svg {
+          width: 24px;
+          height: 24px;
+          transition: transform $transition-base;
+          stroke-width: 2;
+        }
+      }
+
+      .text {
+        display: flex;
+        flex-direction: column;
+        gap: 0.25rem;
+
+        strong {
+          color: $foreground;
+          font-size: 1.1rem;
+          font-weight: $font-semibold;
+        }
+
+        small {
+          color: $muted-foreground;
+          font-size: $text-sm;
+          line-height: $leading-relaxed;
+        }
+      }
+    }
+
+    @media (max-width: $breakpoint-md) {
+      padding: $spacing-lg;
+      border-radius: $radius-xl;
+    }
+  }
+
+  // CHART AND RECOMMENDATIONS SIDE BY SIDE
+  .chart-and-recommendations {
+    display: grid;
+    grid-template-columns: 1fr 400px;
+    gap: $spacing-2xl;
+    align-items: start;
+    margin-bottom: $spacing-3xl;
+
+    @media (max-width: $breakpoint-lg) {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  // RECOMMENDATIONS BOX
+  .recommendations-box {
+    background: linear-gradient(135deg, rgba($accent, 0.03) 0%, rgba($success, 0.05) 100%);
+    border: 2px solid rgba($accent, 0.15);
+    border-radius: $radius-2xl;
+    padding: $spacing-2xl;
+    box-shadow: $card-shadow;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+
+    h3 {
+      font-size: $text-xl;
+      font-weight: $font-bold;
+      margin-bottom: $spacing-lg;
+      color: $foreground;
+      display: flex;
+      align-items: center;
+      gap: $spacing-sm;
+      
+      svg {
+        width: 22px;
+        height: 22px;
+        color: $accent;
+        stroke-width: 2.5;
+      }
+    }
+
+    ul {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      gap: $spacing-sm;
+
+      li {
+        padding: $spacing-md;
+        color: $foreground;
+        font-size: 0.95rem;
+        display: flex;
+        align-items: center;
+        gap: $spacing-sm;
+        background: rgba(255, 255, 255, 0.6);
+        border-radius: $radius-md;
+        border: 1px solid rgba($accent, 0.1);
+        transition: all $transition-base;
+
+        &:hover {
+          background: rgba(255, 255, 255, 0.9);
+          border-color: rgba($accent, 0.2);
+          transform: translateX(4px);
+        }
+
+        svg {
+          width: 18px;
+          height: 18px;
+          color: $accent;
+          flex-shrink: 0;
+          stroke-width: 2.5;
+        }
+
+        strong {
+          color: $primary;
+          font-weight: $font-bold;
+        }
+
+        &.savings-highlight {
+          margin-top: auto;
+          padding: $spacing-md $spacing-lg;
+          border: 2px solid rgba($success, 0.3);
+          background: linear-gradient(135deg, rgba($success, 0.08) 0%, rgba($accent, 0.05) 100%);
+          font-size: 1rem;
+          box-shadow: 0 4px 12px rgba($success, 0.15);
+
+          svg {
+            width: 20px;
+            height: 20px;
+            color: $success;
+          }
+
+          strong {
+            color: $success;
+            font-size: 1.2rem;
+            font-weight: $font-extrabold;
+          }
+        }
+      }
+    }
+    
+    @media (max-width: $breakpoint-lg) {
+      height: auto;
+      padding: $spacing-xl;
+      
+      h3 {
+        font-size: $text-2xl;
+        
+        svg {
+          width: 26px;
+          height: 26px;
+        }
+      }
+      
+      ul li {
+        font-size: 1.05rem;
+
+        &.savings-highlight {
+          font-size: 1.15rem;
+
+          strong {
+            font-size: 1.4rem;
+          }
+        }
+      }
+    }
+
+    @media (max-width: $breakpoint-sm) {
+      padding: $spacing-md;
+
+      ul li {
+        padding: $spacing-sm;
+        font-size: 0.9rem;
+
+        &.savings-highlight {
+          padding: $spacing-md;
+          font-size: 1rem;
+
+          strong {
+            font-size: 1.1rem;
+          }
+        }
+      }
+    }
+  }
+
+  // BACK TO HOME
+  .back-to-home {
+    text-align: center;
+    margin-top: 4rem;
+    padding-top: 3rem;
+    border-top: 2px solid $border;
+
+    .btn svg {
+      width: 16px;
+      height: 16px;
+      stroke-width: 2;
+    }
+  }
+
+  // BUTTONS
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    padding: 0.875rem 2rem;
+    font-size: $text-base;
+    font-weight: $font-semibold;
+    border-radius: $radius-lg;
+    border: none;
+    transition: all $transition-base;
+    text-decoration: none;
+    font-family: $font-sans;
+
+    &.btn-primary {
+      background: $primary;
+      color: white;
+      box-shadow: $shadow-md;
+
+      &:hover {
+        background: darken($primary, 5%);
+        transform: translateY(-1px);
+        box-shadow: $shadow-lg;
+      }
+    }
+
+    &.btn-secondary {
+      background: $card;
+      color: $foreground;
+      border: 2px solid $border;
+      box-shadow: $card-shadow;
+
+      &:hover {
+        background: $muted;
+        border-color: rgba($primary, 0.3);
+        transform: translateY(-1px);
+      }
+    }
+
+    @media (max-width: $breakpoint-sm) {
+      padding: 0.75rem 1.5rem;
+      font-size: $text-sm;
+    }
+  }
+}

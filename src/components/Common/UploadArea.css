@@ -1,0 +1,68 @@
+.upload-wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.upload-area {
+  background: white;
+  border: 3px dashed #cbd5e1;
+  border-radius: 12px;
+  padding: 60px 40px;
+  text-align: center;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+.upload-area:hover {
+  border-color: #667eea;
+  background: #f8fafc;
+}
+.upload-area.dragging {
+  border-color: #667eea;
+  background: #eff6ff;
+  transform: scale(1.02);
+}
+.upload-area.error {
+  border-color: #ef4444;
+}
+
+.upload-icon {
+  font-size: 64px;
+  margin-bottom: 16px;
+}
+
+.upload-area h3 {
+  font-size: 20px;
+  color: #1e293b;
+  margin-bottom: 8px;
+}
+
+.upload-area p {
+  color: #64748b;
+  font-size: 14px;
+}
+
+.file-name {
+  font-size: 16px;
+  color: #10b981;
+  font-weight: 600;
+}
+
+.error-message {
+  color: #ef4444;
+  font-weight: 600;
+  margin-top: 12px;
+}
+
+.sample-option {
+  text-align: center;
+  padding: 20px;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 8px;
+}
+.sample-option p {
+  color: white;
+  margin-bottom: 12px;
+}/*# sourceMappingURL=UploadArea.css.map */
