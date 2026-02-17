@@ -1,0 +1,160 @@
+@import '../../styles/variables';
+
+.upload-wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: $spacing-lg;
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.upload-area {
+  background: $card;
+  border: 3px dashed $border;
+  border-radius: $radius-xl;
+  padding: $spacing-3xl $spacing-2xl;
+  text-align: center;
+  transition: all $transition-base;
+
+  &:hover {
+    border-color: $primary;
+    background: $muted;
+    transform: translateY(-2px);
+    box-shadow: $shadow-md;
+  }
+
+  &.dragging {
+    border-color: $primary;
+    background: rgba($primary, 0.05);
+    transform: scale(1.02);
+    box-shadow: $shadow-lg;
+  }
+
+  &.error {
+    border-color: $destructive;
+    background: rgba($destructive, 0.02);
+  }
+
+  h3 {
+    font-size: $text-xl;
+    color: $foreground;
+    font-weight: $font-bold;
+    margin-bottom: $spacing-xs;
+  }
+
+  p {
+    color: $muted-foreground;
+    font-size: $text-sm;
+    margin: 0;
+  }
+
+  @media (max-width: $breakpoint-sm) {
+    padding: $spacing-2xl $spacing-lg;
+    
+    h3 { font-size: $text-lg; }
+  }
+}
+
+.upload-icon {
+  width: 80px;
+  height: 80px;
+  margin: 0 auto $spacing-lg;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(135deg, rgba($primary, 0.1), rgba($primary, 0.05));
+  border-radius: $radius-xl;
+  transition: all $transition-base;
+
+  svg {
+    width: 40px;
+    height: 40px;
+    color: $primary;
+    stroke-width: 2;
+  }
+
+  .upload-area:hover & {
+    transform: scale(1.1);
+  }
+
+  .upload-area.dragging & {
+    transform: scale(1.15) rotate(5deg);
+  }
+
+  @media (max-width: $breakpoint-sm) {
+    width: 64px;
+    height: 64px;
+    
+    svg {
+      width: 32px;
+      height: 32px;
+    }
+  }
+}
+
+.file-name {
+  font-size: $text-base;
+  color: $success;
+  font-weight: $font-semibold;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: $spacing-xs;
+  margin: $spacing-md 0 0;
+
+  svg {
+    flex-shrink: 0;
+    stroke-width: 2;
+  }
+
+  @media (max-width: $breakpoint-sm) {
+    font-size: $text-sm;
+    flex-direction: column;
+    text-align: center;
+  }
+}
+
+.error-message {
+  color: $destructive;
+  font-weight: $font-semibold;
+  font-size: $text-sm;
+  margin-top: $spacing-md;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: $spacing-xs;
+
+  svg {
+    flex-shrink: 0;
+    stroke-width: 2;
+  }
+
+  @media (max-width: $breakpoint-sm) {
+    flex-direction: column;
+    font-size: $text-xs;
+  }
+}
+
+.sample-option {
+  text-align: center;
+  padding: $spacing-lg;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: $radius-lg;
+
+  p {
+    color: white;
+    margin-bottom: $spacing-md;
+    font-size: $text-sm;
+  }
+
+  .btn {
+    min-width: 200px;
+  }
+
+  @media (max-width: $breakpoint-sm) {
+    padding: $spacing-md;
+    
+    p { font-size: $text-xs; }
+    .btn { min-width: 100%; }
+  }
+}

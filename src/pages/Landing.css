@@ -1,0 +1,173 @@
+.landing-page {
+  min-height: 100vh;
+  padding: 40px 20px;
+}
+
+.hero {
+  text-align: center;
+  margin-bottom: 60px;
+}
+
+.hero-icon {
+  font-size: 80px;
+  margin-bottom: 20px;
+}
+
+.hero-title {
+  font-size: 48px;
+  font-weight: 800;
+  color: white;
+  margin-bottom: 16px;
+  text-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+}
+
+.hero-subtitle {
+  font-size: 24px;
+  color: rgba(255, 255, 255, 0.9);
+  margin-bottom: 12px;
+}
+
+.hero-description {
+  font-size: 16px;
+  color: rgba(255, 255, 255, 0.8);
+}
+
+.upload-section {
+  max-width: 700px;
+  margin: 0 auto 80px;
+}
+
+.error-box {
+  background: #fee2e2;
+  border: 2px solid #ef4444;
+  border-radius: 8px;
+  padding: 16px;
+  margin-top: 20px;
+  text-align: center;
+}
+.error-box p {
+  color: #991b1b;
+  font-weight: 600;
+}
+
+.features {
+  max-width: 1000px;
+  margin: 0 auto;
+}
+.features h2 {
+  text-align: center;
+  font-size: 32px;
+  color: white;
+  margin-bottom: 40px;
+}
+
+.features-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 30px;
+}
+
+.feature-card {
+  background: white;
+  border-radius: 12px;
+  padding: 30px;
+  text-align: center;
+  box-shadow: 0 10px 15px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease;
+}
+.feature-card:hover {
+  transform: translateY(-8px);
+}
+
+.feature-icon {
+  font-size: 48px;
+  margin-bottom: 16px;
+}
+
+.feature-card h3 {
+  font-size: 20px;
+  color: #1e293b;
+  margin-bottom: 12px;
+}
+
+.feature-card p {
+  font-size: 14px;
+  color: #64748b;
+  line-height: 1.6;
+}
+
+.download-scripts {
+  max-width: 900px;
+  margin: 80px auto;
+  text-align: center;
+}
+.download-scripts h2 {
+  font-size: 32px;
+  color: white;
+  margin-bottom: 16px;
+}
+.download-scripts > p {
+  font-size: 18px;
+  color: rgba(255, 255, 255, 0.9);
+  margin-bottom: 40px;
+}
+
+.script-options {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 30px;
+  margin-bottom: 40px;
+}
+
+.script-card {
+  background: white;
+  border-radius: 16px;
+  padding: 40px 30px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+  transition: transform 0.3s ease;
+}
+.script-card:hover {
+  transform: translateY(-8px);
+}
+.script-card .icon {
+  font-size: 64px;
+  margin-bottom: 20px;
+}
+.script-card h3 {
+  font-size: 24px;
+  color: #1e293b;
+  margin-bottom: 12px;
+}
+.script-card p {
+  color: #64748b;
+  margin-bottom: 8px;
+}
+.script-card .requirement {
+  font-size: 14px;
+  color: #94a3b8;
+  font-style: italic;
+  margin-bottom: 24px;
+}
+
+.how-to-use {
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 12px;
+  padding: 30px;
+  text-align: left;
+}
+.how-to-use h3 {
+  color: white;
+  margin-bottom: 20px;
+}
+.how-to-use ol {
+  color: white;
+  font-size: 16px;
+  line-height: 2;
+  padding-left: 24px;
+}
+.how-to-use ol code {
+  background: rgba(0, 0, 0, 0.3);
+  padding: 4px 8px;
+  border-radius: 4px;
+  font-family: "Courier New", monospace;
+}/*# sourceMappingURL=Landing.css.map */
